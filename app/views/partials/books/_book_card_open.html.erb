@@ -1,0 +1,56 @@
+<div class="card-open d-none book-card <%= book.book_type.downcase %>-border" data-book-content-target="bookInfos">
+  <div class="book-thumbnail">
+    <%# si le cover_url contient l'image | ajouté en dur dans les seeds %>
+    <% if book.cover_url %>
+      <%= image_tag book.cover_url%>
+    <%# si le cover_img active storage contient l'image | créé à travers l'action create du controller %>
+    <% elsif book.cover_img.attached? %>
+      <%= cl_image_tag book.cover_img.key %>
+    <% end %>
+  </div>
+
+  <div class="book-info">
+      <div class="first-block-info">
+        <p class="book-title"><%= book.title %></p>
+        <hr class="hr">
+        <%# Si série, il y a %>
+        <% if book.serie %>
+          <p class="book-series">n°<%= book.serie_number %> - <%= book.serie.name %></p>
+        <% end %>
+      </div>
+      <div class="card-details">
+      <hr class="hr">
+        <small>
+          <i><p class="book-author"><%= book.author %>, <%= book.illustrator %></p></i>
+          <p class="book-details"><%= book.release.strftime('%Y') if book.release %> • <%= book.edition if book.edition %></p>
+        </small>
+        <div class="book-actions">
+          <%= link_to book_path(book) do %>
+            <button class="btn btn-details" data-action="click->book-content#stop_bubbling"><i class="fa-solid fa-circle-info"></i></button>
+          <% end %>
+          <% if collection && collection.id%>
+            <%= render 'partials/collections/favorite_button', collection: collection %>
+            <%= render 'partials/collections/read_button', collection: collection %>
+          <% else %>
+            <button
+              value="<%= book_collections_path(book) %>"
+              type="submit"
+              class="btn btn-add-collection"
+              data-book-content-accept-param="plain"
+              data-action="click->book-content#stop_bubbling click->book-content#addCollection click->serie#refresh">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          <% end %>
+        </div>
+      </div>
+      <%# <hr class="hr"> %>
+      <%# <div class="book-desc"> %>
+        <%# <p><strong>Description :</strong> <%= book.description </p> %>
+      <%# </div> %>
+  </div>
+  <div class="book-genre">
+    <% book.genres.each do |genre| %>
+      <span class="badge big-badge"><%= genre.name %></span>
+    <% end %>
+  </div>
+</div>

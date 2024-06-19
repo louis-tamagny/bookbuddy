@@ -1,0 +1,18 @@
+
+<div class="title-card">
+  <%= image_tag "BookBuddy_logo.svg", alt: "Logo BookBuddy", class: "book"%>
+  <h2 class="card-title">Ajouter un livre</h2>
+  <%= render 'partials/books/new_book_search' %>
+</div>
+<div class="container">
+  <div class="book-form-choices" data-controller='new-book-form'>
+    <div class='d-flex justify-content-center'>
+      <button class='add-book' data-action='click->new-book-form#toggle_form'>
+        Ajouter manuellement
+      </button>
+    </div>
+    <div class='d-none' data-new-book-form-target='form'>
+      <%= render 'partials/books/new_book_form', book: @book %>
+    </div>
+  </div>
+</div>

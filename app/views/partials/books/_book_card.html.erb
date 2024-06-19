@@ -1,0 +1,7 @@
+<%# Stimulus controller pour cacher et révéler les infos des bouquins %>
+<div data-controller="book-content" data-action="click->book-content#visible">
+  <%# Partie cachée de la carte, Stimulus target bookInfos %>
+  <%= render 'partials/books/book_card_open', book: book, collection: collection %>
+  <%# Partie visible par défaut, Stimulus target bookDefault %>
+  <%= render 'partials/books/book_card_close', book: book, collection: collection %>
+</div>

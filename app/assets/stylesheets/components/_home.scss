@@ -1,0 +1,192 @@
+.header-home {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin: 0.5em 1em 1em 1em;
+
+  .book {
+    // margin: 1em 0 0 1em;
+    width: auto;
+    height: 60px;
+  }
+
+  .text {
+    // margin-top: 1em;
+    height: 80px;
+  }
+}
+
+.header-user {
+  i {
+    color: $darkgreen;
+    font-size: 2em;
+    margin-right: 0.2em;
+  }
+}
+
+.home-card {
+  border-radius: 1em;
+  border: 2px solid $lightgrey;
+  box-shadow: 0 4px 0 $lightgrey;
+  background-color: $white;
+  padding: 0.5em 1em 0.3em;
+  margin: 0.8em;
+  position: relative;
+  color: $black;
+  font-size: 1.4em;
+  // text-align: center;
+
+  h4 {
+    font-size: 1.1em;
+    line-height: 1.1em;
+  }
+
+  h3 {
+    color: $darkgreen;
+  }
+
+  .green-text{
+    color: $darkgreen;
+  }
+
+  .blue-text{
+    color: $blue;
+  }
+
+  .purple-text{
+    color: $purple;
+  }
+
+  .red-text{
+    color: $red;
+  }
+
+  .home-text {
+    line-height: 1em;
+  }
+}
+
+.home-card-collection {
+  padding: 0.8em;
+
+  .home-card-collection-details {
+    display: flex;
+    width: 100%;
+    gap: 0.6em;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+
+    .roman-count,
+    .manga-count,
+    .bd-count,
+    .poesie-count {
+      padding: 0.3em 0.5em;
+      border-radius: 15px;
+      flex: 1;
+      text-align: center;
+      font-size: 1.3em;
+      line-height: 1em;
+    }
+
+    .roman-count {
+      color: $darkgreen;
+      background-color: rgba(50, 235, 50, 0.05);
+      border: 2px solid $green;
+      // box-shadow: 0 3px 0 $green;
+    }
+
+    .manga-count {
+      color: $darkblue;
+      background-color: rgba(21, 162, 228, 0.05);
+      border: 2px solid $blue;
+      // box-shadow: 0 3px 0 $blue;
+    }
+
+    .bd-count {
+      color: $darkred;
+      background-color: rgba(253, 60, 60, 0.05);
+      border: 2px solid $red;
+      // box-shadow: 0 3px 0 $red;
+    }
+
+    .poesie-count {
+      color: $purple;
+      background-color: rgba(214, 27, 214, 0.05);
+      border: 2px solid $purple;
+      // box-shadow: 0 3px 0 $purple;
+    }
+  }
+}
+
+
+.home-card:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 40px;
+  right: auto;
+  bottom: auto;
+	top: -23px;
+	border: 11px solid;
+	border-color:  transparent transparent$lightgrey$lightgrey;
+}
+.home-card:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 42px;
+  right: auto;
+  top: -18px;
+	bottom: auto;
+	border: 10px solid;
+	border-color: transparent transparent $white $white;
+}
+
+.last-books {
+  // padding: 0.8em;
+  height: 400px;
+}
+
+.settings {
+  // padding: 0.8em;
+  height: auto;
+}
+
+.last-books h2 {
+  padding: 0.5em 0 0 0.8em;
+  text-transform: uppercase;
+  color: $black;
+  font-size: 1.5em;
+  font-weight: bold;
+
+  .home-icon-settings {
+    color: grey;
+    font-size: 0.8em;
+    margin: 0.1em 0.4em;
+  }
+
+  .home-icon-book {
+    color: $green;
+    font-size: 0.8em;
+    margin: 0.1em 0.4em;
+  }
+  .home-icon-heart {
+    color: $red;
+    font-size: 0.8em;
+    margin: 0.1em 0.4em;
+  }
+}
+
+.last-books-cards {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.8em;
+  overflow-x: scroll;
+  padding: 0.8em;
+}

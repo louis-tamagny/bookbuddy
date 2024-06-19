@@ -1,0 +1,6 @@
+<div class="user-log-out">
+  <%= button_to '<i class="fa-solid fa-right-from-bracket"></i>'.html_safe, destroy_user_session_path, method: :delete %>
+  <%= link_to users_path do %>
+    <i class="fa-solid fa-user"></i>
+  <% end %>
+</div>

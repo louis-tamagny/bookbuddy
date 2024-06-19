@@ -1,0 +1,78 @@
+<div data-controller='index-search'>
+
+  <div class="title-card">
+    <%= image_tag "BookBuddy_logo.svg", alt: "Logo BookBuddy", class: "book"%>
+    <%# <div class="vl"></div> %>
+    <h2 class="card-title">Bibliothèque</h2>
+    <div class="filter-box container">
+
+      <div class="search-bar">
+        <input
+          type="text"
+          name="query"
+          class="form-control"
+          placeholder="Rechercher par titre, auteur, genre..."
+          data-index-search-target='input'
+          data-action='input->index-search#search'>
+      </div>
+
+      <div class="filter-box-checkbox">
+
+        <div class="form-check form-switch">
+          <label for="my" class="form-check-label">Ma collection</label>
+            <input  class="form-check-input"
+                    name='my'
+                    data-index-search-target='my'
+                    data-action='input->index-search#search'
+                    type="checkbox"
+                    role="switch"
+                    checked>
+        </div>
+
+        <div class="form-check form-switch">
+          <label for="favorite" class="form-check-label">Favoris</label>
+          <input  class="form-check-input"
+                    name='favorite'
+                    data-index-search-target='favorite'
+                    data-action='input->index-search#search'
+                    type="checkbox"
+                    role="switch"
+                    >
+        </div>
+
+        <div class="form-check form-switch">
+          <label for="genre-switch" class="form-check-label">Genres</label>
+            <input  class="form-check-input"
+                    name='genre-switch'
+                    data-action='input->index-search#showGenres'
+                    type="checkbox"
+                    role="switch">
+        </div>
+
+      </div>
+      <div class="genre-checkboxes d-none" data-index-search-target='genresBox'>
+        <% @genres.each do |genre| %>
+          <div class="genre-wrapper">
+              <input
+                type="checkbox"
+                value="<%= genre.name %>"
+                id="<%= genre.name %>-checkbox"
+                class="book-genre-input-button"
+                data-index-search-target="genre"
+                data-action='input->index-search#updateGenres'
+              />
+              <label for="<%= genre.name %>-checkbox"><%= genre.name %></label>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class='container'>
+    <div data-index-search-target='list'>
+        <%= render 'partials/index_list', books: @books%>
+    </div>
+  </div>
+</div>

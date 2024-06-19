@@ -1,0 +1,270 @@
+.show-book-cover {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+  background-color: $white;
+  border-radius: 0 0 1em 1em;
+  box-shadow: 0 4px $white;
+  margin-bottom: 0.8em;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.blur-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(5px);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.show-book-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 1em;
+  box-shadow: 0 4px $lightgrey;
+  border: 2px solid $lightgrey;
+}
+
+.show-image {
+  object-fit: cover;
+  border-radius: 1em;
+  object-position: center;
+  width: 165px;
+  height: 250px;
+}
+
+.btn-right-bottom-show {
+  position: absolute;
+  z-index: 3;
+  bottom: 30px;
+  right: 30px;
+}
+
+.btn-back-show {
+  position: absolute;
+  z-index: 3;
+  top: 30px;
+  left: 30px;
+}
+
+.btn-right-top-show {
+  position: absolute;
+  z-index: 3;
+  top: 30px;
+  right: 30px;
+}
+
+.btn-neutral-show {
+  color: $grey;
+  border: 2px solid $grey;
+  box-shadow: inset 0 -2px 0px $grey;
+  background-color: $white;
+}
+
+// ________________________________
+
+.card-book-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+  justify-content: space-around;
+  margin-top: 1em;
+
+  .btn-favorite {
+    z-index: 1;
+    color: $red;
+    background-color: $white;
+    border: 2px solid $red;
+    box-shadow: inset 0 -2px 0px $red;
+  }
+
+  .btn-favorite-active {
+    color: $white;
+    background-color: $red;
+    border: 2px solid $red;
+    box-shadow: inset 0 -2px 0px $red;
+  }
+
+  .btn-details {
+    z-index: 1;
+    color: $lightgrey;
+    background-color: $white;
+    border: 2px solid $lightgrey;
+    box-shadow: inset 0 -2px 0px $lightgrey;
+  }
+
+  .btn-read {
+    color: $green;
+    background-color: $white;
+    border: 2px solid $green;
+    box-shadow: inset 0 -2px 0px $green;
+  }
+}
+
+.container {
+
+  .card-title {
+    color: $black;
+    font-size: 1.8em;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .card-author, .card-serie {
+    color: $black;
+    margin: 0;
+  }
+
+  .card-book-serie-number {
+    display: flex;
+    background-color: $blue;
+    border-radius: 15px;
+    border: 2px solid $darkblue;
+    box-shadow: inset 0 -4px 0 $darkblue;
+    padding: 0.3em 0.5em 0.2em 0.5em;
+    margin-right: 1em;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .card-serie-number, .card-serie-total, .card-serie-tiret {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: $white;
+  }
+  .card-serie-total {
+    font-weight: normal;
+  }
+
+  .card-serie-description {
+    margin-left: 1em;
+    color: $black;
+  }
+
+  .card-genres {
+    margin: 0;
+  }
+}
+
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5em;
+  align-items: center;
+}
+
+.badge {
+  background-color: $green;
+  color: $white;
+  padding: 5px 10px;
+  border-radius: $border-radius;
+  margin-right: 5px;
+  font-size: 1em;
+}
+
+.book-description {
+  margin-bottom: 1em;
+  padding: 1em;
+  background-color: $white;
+  font-size: 1.2em;
+  line-height: 1em;
+  color: $black;
+  border-radius: 1em;
+  border: 2px solid $lightgrey;
+  box-shadow: inset 0 -2px 0px $lightgrey;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.btn-delete {
+  color: $white;
+  background-color: $red;
+  border: 2px solid $darkred;
+  box-shadow: inset 0 -3px 0px $darkred;
+}
+
+.comment {
+  background-color: $white;
+  padding: 10px;
+  border: 1px solid $lightgrey;
+  border-radius: $border-radius;
+  margin-bottom: 1em;
+}
+
+.comment-title-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5em;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+/* Modal styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: $white;
+  padding: 20px;
+  border-radius: $border-radius;
+  width: 80%;
+  max-width: 500px;
+}
+
+.modal-header,
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  font-size: 1.2em;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+}

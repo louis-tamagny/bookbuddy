@@ -1,0 +1,187 @@
+.new-book-form, .genre-checkboxes, #tempbook-container {
+
+  .genre-wrapper {
+    display: inline-block;
+    color: $white;
+  }
+
+  .book-genre-input-button {
+    position: absolute;
+    transform: scale(0);
+  }
+
+  .book-genre-input-button + label {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1.2rem;
+    border-radius: 50rem;
+    padding: 0.2em 1em;
+    color: $darkgreen;
+    background-color: $white;
+    border: 2px solid $darkgreen;
+    box-shadow: 0 4px 0 $darkgreen;
+    margin-right: 0.6rem;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+
+    }
+
+  .book-genre-input-button + label:checked {
+    color: $white;
+    background-color: $red;
+    border: 2px solid $darkgreen;
+    box-shadow: none;
+  }
+
+  .form-check-input.is-valid ~ .form-check-label {
+    color: $darkgreen;
+    background-color: $white;
+    border: 2px solid $darkgreen;
+    box-shadow: 0 4px 0 $darkgreen;
+  }
+
+  .form-check-input.is-valid:checked ~ .form-check-label {
+    color: $white;
+    background-color: $green;
+    border: 2px solid $darkgreen;
+  }
+
+  .form-check-input.is-invalid ~ .form-check-label {
+    color: $red;
+    background-color: $red;
+  }
+
+  .book-genre-input-button:checked + label {
+    color: $white;
+    background-color: $darkgreen;
+  }
+
+  .form-block {
+    width: 100%;
+    border-radius: 2em;
+    margin-bottom: 1em;
+
+    input, textarea, select {
+      background-color: $white;
+      border-radius: 15px;
+      border: 2px solid $grey;
+      color: $grey;
+      font-size: 1.1em;
+    }
+    .form-label {
+      font-size: 1.1em;
+      padding-left: 1em;
+      margin-bottom: 0.3rem;
+    }
+  }
+
+  .form-block-description {
+    width: 100%;
+    border-radius: 2em;
+    margin-bottom: 1em;
+
+    textarea {
+      border-radius: 15px;
+      color: $white;
+      font-size: 1.1em;
+      color: $black;
+      border: 2px solid $grey;
+      box-shadow: 0 4px 0 $grey;
+      background-color: $lightgrey
+      }
+
+      .hello::placeholder {
+        color: $black;
+      }
+  }
+
+  .form-label {
+    font-size: 1.1em;
+    padding-left: 1em;
+    margin-bottom: 0.3rem;
+  }
+
+  .genre-block {
+    width: 100%;
+    border-radius: 2em;
+    margin-bottom: 1em;
+
+    fieldset {
+      border-radius: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    input, textarea, select {
+      border-radius: 15px;
+      font-size: 1.1em;
+    }
+    .form-label, legend {
+      font-size: 1.1em;
+      padding-left: 1em;
+      margin-bottom: 0.3rem;
+    }
+  }
+
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+
+  .form-col-8, .form-col-4 {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .form-col-8 {
+    flex: 0 0 65%;
+    max-width: 65%;
+  }
+
+  .form-col-4 {
+    flex: 0 0 35%;
+    max-width: 35%;
+  }
+
+  .button.size-2x.style-green {
+    padding: 0.5rem 1rem;
+    background-color: $green;
+    color: $white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .add-btn {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  }
+.add-book {
+  padding: 0.2em 1em;
+  border-radius: 15px;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: $dark;
+  border: 2px solid $darkgreen;
+  box-shadow: 0 4px 0 $darkgreen;
+  background-color: $green
+}
+
+.edit-book {
+  width: 60px;
+  height: 50px;
+  padding: 0.2em 0.5em;
+  border-radius: 15px;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: $darkgreen;
+  border: 2px solid $darkgreen;
+  box-shadow: 0 3px 0 $darkgreen;
+  background-color: $white
+}

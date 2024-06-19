@@ -1,0 +1,80 @@
+<div class="title-card">
+  <%= image_tag "BookBuddy_logo.svg", alt: "Logo BookBuddy", class: "book"%>
+  <h2 class="card-title">Hello <%= current_user.nickname %> !</h2>
+</div>
+<div class="profile">
+    <div class="user">
+      <div class="avatar">
+        <img src="avatar.jpg" alt="Avatar">
+      </div>
+      <div class="user-infos">
+        <h2>Nickname</h2>
+        <p>Email: example@example.com</p>
+        <button class="edit-profile">Editer</button>
+        <button class="delete-profile">Supprimer le profil</button>
+      </div>
+    </div>
+
+    <div class="home-card">
+  <h4>Bienvenue  <strong><%= current_user.nickname %></strong> ! <br>
+  <span style="color: lightgrey; font-size: 0.9em;">Il y a <strong><%= current_user.books.count %> livres</strong> dans ta bibliothèque...</span></h4>
+</div>
+
+<div class="last-books settings">
+  <h2><i class="fa-solid fa-chart-simple home-icon-settings"></i></i> <span style="text-decoration: underline;
+                text-decoration-style: solid;
+                text-decoration-color: grey;
+                text-decoration-thickness: 0.4rem;
+                text-underline-offset: 0.1rem;">Ta collection</span></h2>
+  <div class="home-card-collection">
+    <div class="home-card-collection-details">
+      <div class="roman-count">
+        <strong>Roman<br><%= current_user.books.where(book_type: 'Roman').count %></strong>
+      </div>
+      <div class="manga-count">
+        <strong >Manga<br><%= current_user.books.where(book_type: 'Manga').count %></strong>
+      </div>
+        <div class="bd-count">
+      <strong >BD<br><%= current_user.books.where(book_type: 'BD').count %></strong>
+      </div>
+        <div class="poesie-count">
+      <strong >Poésie<br><%= current_user.books.where(book_type: 'Poesie').count %></strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="last-books">
+  <h2><i class="fa-solid fa-heart home-icon-heart"></i></i> <span style="text-decoration: underline;
+                        text-decoration-style: solid;
+                        text-decoration-color: #FF6359;
+                        text-decoration-thickness: 0.4rem;
+                        text-underline-offset: 0.1rem;">Tes favoris</span></h2>
+  <div class="last-books-cards">
+    <% current_user.books.favorite_books('true', current_user).each do |book| %>
+      <%= link_to book_path(book) do %>
+        <%= render 'partials/books/book_card_portrait', book: book %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
+    <div class="transactions">
+      <h2>Transactions</h2>
+      <ul class="transaction-list">
+        <li><span class="transaction-type borrowed">Emprunté</span>
+          <ul class="borrowed">
+            <li>Titre du livre emprunté</li>
+          </ul>
+        </li>
+        <li><span class="transaction-type lent">Prêté</span>
+          <ul class="lent">
+            <li>Titre du livre prêté - Pierre</li>
+            <li>Titre du livre prêté - Louis</li>
+            <li>Titre du livre prêté - Renaud</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    </div>

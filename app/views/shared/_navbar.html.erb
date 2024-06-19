@@ -1,0 +1,24 @@
+<nav class="nav" data-controller="navbar">
+  <ul class="nav-links">
+    <li class="nav-item">
+      <%= link_to home_path do %>
+        <i data-navbar-home-value="/home" data-navbar-target="home" class="fa-solid fa-house"></i>
+      <% end %>
+    </li>
+    <li class="nav-item">
+      <%= link_to new_book_path do %>
+        <i data-navbar-newBook-value="/books/new" data-navbar-target="new" class="fa-solid fa-plus"></i>
+      <% end %>
+    </li>
+    <li class="nav-item">
+      <%= link_to books_path do %>
+        <i data-navbar-target="books" class="fa-solid fa-table-list"></i>
+      <% end %>
+    </li>
+    <li class="nav-item">
+      <%= link_to series_path do %>
+        <i class="fa-solid fa-book" data-navbar-target="series"></i>
+      <% end %>
+    </li>
+  </ul>
+</nav>

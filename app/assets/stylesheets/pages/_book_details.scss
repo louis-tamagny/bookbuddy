@@ -1,0 +1,57 @@
+.card-image {
+  height: auto !important;
+}
+
+.book-details-card {
+  --flatify__card-border-color: none;
+  --flatify__card-bg-color: $white !important;
+  background-color: $white;
+  margin: 0 auto;
+}
+
+.custom-badge {
+  width: 50px;
+}
+
+.comment {
+  margin-top: 1em;
+}
+
+.comment-title-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  h6 {
+    display: block;
+    margin-right: 1em;
+    margin-bottom: 0;
+  }
+}
+
+.comment-modal {
+  backdrop-filter: blur(10px);
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: calc(100vh + 120px);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  margin: 0;
+  z-index: 10;
+  color: $black;
+
+  #collection_comment {
+    color: $black;
+    height: 10rem;
+  }
+}
+
+.modal-content {
+  width: 330px;
+  padding: 1em;
+  padding-bottom: 1.5em;
+}

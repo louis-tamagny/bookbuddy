@@ -1,0 +1,13 @@
+.green-btn {
+  background-color: $green;
+  color: $white;
+}
+
+.blue-btn {
+  color: $white;
+  background-color: $blue;
+  box-shadow: inset 0 -3px 0px $darkblue;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 0.5rem;
+}

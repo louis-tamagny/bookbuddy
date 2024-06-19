@@ -1,0 +1,13 @@
+<button
+  value="<%= favorite_collection_path(collection) %>"
+  data-turbo-method="patch"
+  type="submit"
+  class="btn btn-favorite"
+  data-book-content-target="favButton"
+  data-action="click->book-content#stop_bubbling click->book-content#addFavorite">
+    <% if collection.is_favorited %>
+      <i class="fa-solid fa-heart"></i>
+    <% else %>
+      <i class="fa-regular fa-heart"></i>
+    <% end %>
+</button>

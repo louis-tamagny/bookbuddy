@@ -1,0 +1,35 @@
+<div class="header-sign">
+  <%= image_tag "BookBuddy_logo.svg", alt: "Logo BookBuddy", class: "book"%>
+  <%= image_tag "BookBuddy.svg", alt: "BookBuddy", class:"text" %>
+</div>
+
+<div class="container">
+  <div class="sign-shit">
+    <h2>Si tu as dejà un compte chez nous,<br><span style="color: $dark !important;">connecte-toi ici:</span></h2>
+
+
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-inputs">
+        <%= f.input :email,
+                    placeholder: "buddy@gmail.com",
+                    required: false,
+                    autofocus: true,
+                    input_html: { autocomplete: "email" } %>
+        <%= f.input :password,
+                    placeholder: "TopSecret00?",
+                    required: false,
+                    input_html: { autocomplete: "current-password" } %>
+        <%= f.input :remember_me,
+                    placeholder: "Enregistrer mes identifiants",
+                    as: :boolean if devise_mapping.rememberable? %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Go !", class:"btn btn-success" %>
+      </div>
+    <% end %>
+    <hr>
+    <h2>créer un compte</h2>
+    <%= render "devise/shared/links", class:"shared-links" %>
+  </div>
+</div>

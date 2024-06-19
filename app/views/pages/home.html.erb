@@ -1,0 +1,70 @@
+<div class="header-home">
+  <div class="header-logo">
+    <%= image_tag "BookBuddy_logo.svg", alt: "Logo BookBuddy", class: "book"%>
+    <%= image_tag "BookBuddy.svg", alt: "BookBuddy", class:"text" %>
+  </div>
+  <div class="header-user">
+    <%= link_to user_path(current_user) do %>
+      <i class="fa-solid fa-user"></i>
+    <% end %>
+  </div>
+</div>
+
+<div class="home-card">
+  <h4>Bienvenue  <strong><%= current_user.nickname %></strong> ! <br>
+  <span style="color: grey; font-size: 0.9em;">Il y a <strong><%= current_user.books.count %> livres</strong> dans ta bibliothèque...</span></h4>
+</div>
+
+<div class="last-books settings">
+  <h2><i class="fa-solid fa-chart-simple home-icon-settings"></i></i> <span style="text-decoration: underline;
+                text-decoration-style: solid;
+                text-decoration-color: grey;
+                text-decoration-thickness: 0.4rem;
+                text-underline-offset: 0.1rem;">Recap'</span></h2>
+  <div class="home-card-collection">
+    <div class="home-card-collection-details">
+      <div class="roman-count">
+        <strong>Roman<br><%= current_user.books.where(book_type: 'Roman').count %></strong>
+      </div>
+      <div class="manga-count">
+        <strong >Manga<br><%= current_user.books.where(book_type: 'Manga').count %></strong>
+      </div>
+        <div class="bd-count">
+      <strong >BD<br><%= current_user.books.where(book_type: 'BD').count %></strong>
+      </div>
+        <div class="poesie-count">
+      <strong >Poésie<br><%= current_user.books.where(book_type: 'Poesie').count %></strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="last-books">
+  <h2><i class="fa-solid fa-book-bookmark home-icon-book"></i> <span style="text-decoration: underline;
+                        text-decoration-style: solid;
+                        text-decoration-color: #89E219;
+                        text-decoration-thickness: 0.4rem;
+                        text-underline-offset: 0.1rem;">Derniers Ajouts</span></h2>
+  <div class="last-books-cards">
+    <% current_user.books.reverse.each do |book| %>
+      <%= link_to book_path(book) do %>
+        <%= render 'partials/books/book_card_portrait', book: book %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="last-books">
+  <h2><i class="fa-solid fa-heart home-icon-heart"></i></i> <span style="text-decoration: underline;
+                        text-decoration-style: solid;
+                        text-decoration-color: #FF6359;
+                        text-decoration-thickness: 0.4rem;
+                        text-underline-offset: 0.1rem;">Livres Favoris</span></h2>
+  <div class="last-books-cards">
+    <% current_user.books.favorite_books('true', current_user).each do |book| %>
+      <%= link_to book_path(book) do %>
+        <%= render 'partials/books/book_card_portrait', book: book %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

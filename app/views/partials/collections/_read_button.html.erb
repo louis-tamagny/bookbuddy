@@ -1,0 +1,12 @@
+<button
+  value="<%= read_collection_path(collection) %>"
+  data-turbo-method="patch"
+  type="submit"
+  class="btn btn-read"
+  data-action="click->book-content#stop_bubbling click->book-content#addAsRead">
+  <% if collection.is_read %>
+    <i class="fa-solid fa-circle-check"></i>
+  <% else %>
+    <i class="fa-regular fa-circle-check"></i>
+  <% end %>
+ </button>

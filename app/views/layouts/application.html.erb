@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BookBuddy - gestionnaire de collection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="manifest" crossorigin="use-credentials" href="<%= asset_path 'manifest.json' %>" />
+    <%= render 'shared/ios_pwa_links' %>
+    <%= favicon_link_tag %>
+
+    <meta property="og:title" content="BookBudy" />
+    <meta property="og:type" content="web-application" />
+    <meta property="og:url" content="https://www.bookbudy.ink" />
+    <meta property="og:image" content='<%= image_tag "og-image.jpg"%>' />
+    <meta property="og:description" content="Decouvrez le meilleur gestionaire de bibliotheque" />
+
+  </head>
+
+  <body>
+    <%# <div data-controller="manga-api-connect"> %>
+      <%# <%= link_to "index serie", series_path%>
+      <%# <%= link_to "index book", books_path%>
+      <%= yield %>
+
+      <% if user_signed_in? && request.original_url != root_url%>
+        <%= render "shared/navbar" %>
+      <% end %>
+    <%# </div> %>
+  </body>
+</html>

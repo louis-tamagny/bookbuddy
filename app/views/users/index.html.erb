@@ -1,0 +1,21 @@
+
+<div class="title-card">
+  <%= image_tag "BookBuddy_logo.svg", alt: "Logo BookBuddy", class: "book"%>
+  <h2 class="card-title">Utilisateurs</h2>
+</div>
+
+<div class="user-cards">
+  <% @users.each do |current_user| %>
+    <div class="user-card">
+      <div class="user-info">
+        <h2 class="user-name">Pierre Brossard</h2>
+        <p class="user-email">Pilou@gmail.com</p>
+      </div>
+      <div class="user-actions">
+        <%= link_to 'Show', user_path(current_user), class: 'btn btn-show' %>
+        <%= link_to 'Edit', edit_user_path(current_user), class: 'btn btn-edit' %>
+        <%= link_to 'Delete', user_path(current_user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-delete' %>
+      </div>
+    </div>
+  <% end %>
+</div>

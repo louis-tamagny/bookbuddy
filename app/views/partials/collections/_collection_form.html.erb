@@ -1,0 +1,5 @@
+<%= simple_form_for collection do |f| %>
+  <%= f.label :comment, "Enter un commentaire" %>
+  <%= f.input :comment, label: false %>
+  <%= f.submit "Valider", class: "btn green-btn"%>
+<% end %>

@@ -1,0 +1,85 @@
+.filter-box{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 1em;
+
+  .search-bar input {
+    display: block;
+    width: 100%;
+    padding: 0.5em 1em;
+    font-size: 1.2em;
+    font-weight: normal;
+    line-height: 1.5;
+    color: $black;
+    appearance: none;
+    background-color: $white;
+    background-clip: padding-box;
+    border: 2px solid $lightgrey;
+    border-radius: 5em;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  .genre-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-top: 2px solid $lightgrey;
+    padding: 1em 0;
+  }
+}
+
+.filter-box-checkbox {
+  display: flex;
+  gap: 1em;
+  margin-bottom: 1em;
+
+  .form-check {
+    display: block;
+    min-height: 1.5rem;
+    padding-left: 1.5em;
+    margin-bottom: 0;
+  }
+
+  .form-switch .form-check-input:checked {
+    background-position: right center;
+  }
+
+  .form-switch .form-check-input {
+    margin-left: 2.5em;
+    background-image: $lightgrey;
+    background-position: left center;
+    border-radius: 2em;
+    transition: background-position 0.3s ease-in-out;
+  }
+
+  .form-check-input:checked {
+    background-color: $green;
+    border-color: $darkgreen;
+  }
+
+  .form-check .form-check-input {
+    float: left;
+    margin-left: -1.5em;
+  }
+
+  .form-check-input {
+    width: 3em;
+    height: 1.5em;
+    margin: 0 0.5em;
+    vertical-align: top;
+    appearance: none;
+    background-color: $white;
+    background-image: $lightgrey;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: 2px solid $lightgrey;
+  }
+
+  .form-check-label {
+    font-size: 1.1em;
+    color: $grey;
+    font-weight: 500;
+  }
+}

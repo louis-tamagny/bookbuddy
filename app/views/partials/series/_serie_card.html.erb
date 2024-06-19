@@ -1,0 +1,23 @@
+<div class="card-close serie-card d-flex flex-column">
+  <div class="d-flex p-3 pb-0 w-100 justify-content-between align-items-center">
+    <div>
+      <p class="book-title"><%= serie.name %></p>
+      <p class='mb-0'><strong><%= serie.books_total %></strong> volumes - <span style="text-transform: uppercase; font-weight:bold; color: #2b70c9;"><%= serie.status%></span></p>
+    </div>
+    <div>
+      <%= link_to serie_path(serie) do %>
+        <button class="btn btn-details">Voir la série</i></button>
+      <% end %>
+    </div>
+  </div>
+  <div class='serie-card-images'>
+    <% serie.books.order(:serie_number).each do |book| %>
+      <% if book.cover_url %>
+        <%= image_tag book.cover_url, class:"serie-card-image #{ 'serie-card-image-not-owned' unless current_user.books.include?(book) }"%>
+      <%# si le cover_img active storage contient l'image | créé à travers l'action create du controller %>
+      <% elsif book.cover_img.attached? %>
+        <%= cl_image_tag book.cover_img.key, class:"serie-card-image #{ 'serie-card-image-not-owned' unless current_user.books.include?(book) }" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

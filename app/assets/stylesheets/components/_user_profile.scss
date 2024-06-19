@@ -1,0 +1,110 @@
+.profile {
+  margin: 0 auto;
+  background-color: $white;
+
+  h2 {
+    font-size: 1em;
+    text-transform: uppercase;
+    font-weight: 900;
+  }
+}
+
+.user {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  padding: 1em;
+  border-radius: 1em;
+  border: 2px solid $lightgrey;
+  box-shadow: 0 3px 0px $lightgrey;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+
+  border: 2px solid $lightgrey;
+  box-shadow: 0 3px 0px $lightgrey;
+}
+
+.user-infos {
+  text-align: left;
+  justify-items: center;
+}
+
+
+.wishlist,
+.stats,
+.user,
+.transactions {
+  margin-bottom: 1em;
+}
+
+.wishlist {
+  padding: 1em;
+  border-radius: 1em;
+  border: 2px solid $lightgrey;
+  box-shadow: 0 3px 0px $lightgrey;
+}
+
+
+.stats {
+  padding: 1em;
+  border-radius: 1em;
+  border: 2px solid $lightgrey;
+  box-shadow: 0 3px 0px $lightgrey;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.stat-item {
+  margin: 1em;
+  padding: 1em;
+  border-radius: 1em;
+  border: 2px solid $darkgreen;
+  background-color: $green;
+}
+
+.user-button {
+  margin: 5px;
+  padding: 10px 20px;
+  color: $blue;
+  border: 2px solid $blue;
+  border-radius: 1em;
+}
+
+.transactions {
+  padding: 1em;
+  border-radius: 1em;
+  border: 2px solid $lightgrey;
+  box-shadow: 0 3px 0px $lightgrey;
+}
+
+.transaction-list {
+  list-style: none;
+}
+
+.transaction-list li, .transaction-list li ul li{
+  padding: 1em;
+  border-bottom: 1px solid $lightgrey;
+}
+
+.transaction-list li:last-child {
+  border-bottom: none;
+}
+
+.transaction-list li span {
+  font-weight: bold;
+}
+
+.transaction-list li .transaction-type {
+  color: $blue;
+}
+
+.transaction-list li .transaction-type.borrowed {
+  color: $red;
+}

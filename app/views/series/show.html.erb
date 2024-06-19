@@ -1,0 +1,20 @@
+<div class="title-card">
+  <%= image_tag "BookBuddy_logo.svg", alt: "Logo BookBuddy", class: "book"%>
+  <h2 class="card-title">Série :
+    <br>
+    <span class="card-serie-title"><%= @serie.name %></span>
+  </h2>
+</div>
+
+<div class="container" data-controller="serie">
+  <h6><%= @serie.status %></h6>
+  <div class="progress" role="progressbar" data-serie-target="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+  <div class="progress-bar" data-serie-target="progressValue" style="width: 75%"></div>
+</div>
+  <p data-serie-target="userProgress"> <%= @userBook[@serie.id] %> / <%= @serie.books_total %></p>
+  <div>
+    <% @serie.books.order(:serie_number).each do |book| %>
+      <%= render 'partials/books/book_card', book: book, collection: Collection.find_by(book: book, user: current_user) %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<%= simple_form_for book, html: { class: 'new-book-form' } do |f| %>
+<hr>
+  <div class="form-block">
+    <div class="form-row">
+      <div class="form-col-8">
+        <%= f.input :book_type,
+          label: 'Type',
+          prompt: 'Choisissez un type..',
+          collection: Book::TYPES,
+          input_html: { data: { action:'change->new-book-form#toggle_illustrator' } }
+        %>
+      </div>
+      <div class="form-col-4">
+        <%= f.input :release,
+          as: :integer,
+          label: 'Sortie',
+          placeholder: '2000',
+          input_html: {value: 2000}
+        %>
+      </div>
+    </div>
+
+    <%= f.input :title,
+      label: false,
+      placeholder: 'Titre'
+    %>
+    <%= f.input :author,
+      label: false,
+      placeholder: 'Auteur.trice'
+    %>
+    <%= f.input :illustrator,
+      label: false,
+      placeholder: 'Illustrateur.trice',
+      wrapper_html: {
+        data: { new_book_form_target: 'illustrator' }
+      }
+    %>
+    <%= f.input :edition, label: false, placeholder: 'Edition' %>
+  </div>
+<hr>
+  <div class="form-block-description">
+    <%= f.input :description, label: false, placeholder: 'Description', input_html: {class: 'mb-0 w-100 hello'} %>
+  </div>
+<hr>
+  <div class='form-block'>
+    <div class="form-row">
+      <div class="form-col-8">
+        <%= f.association :serie,
+          label: 'Série',
+          prompt: 'Ajouter une série...',
+          input_html: { data: { action:'change->new-book-form#toggle_serie' } }
+        %>
+      </div>
+      <div class="form-col-4">
+        <%= f.input :serie_number, label: 'N°' %>
+      </div>
+    </div>
+    <div class="form-container" data-new-book-form-target='serie'>
+      <input class="form-control string optional" type="text" name="serie[name]" placeholder="Nom de la série">
+    </div>
+  </div>
+<hr>
+  <div class='genre-block'>
+    <%= f.association :genres, as: :check_boxes,
+      input_html: {class: 'book-genre-input-button'},
+      item_wrapper_class: 'genre-wrapper'
+    %>
+  </div>
+<hr>
+  <div class="form-block">
+    <%= f.input :cover_img, as: :file, label: 'Image de couverture', input_html: {class: 'mb-0'} %>
+  </div>
+<hr>
+  <div class='add-btn'>
+    <%= f.submit 'Ajouter', class:'add-book' %>
+  </div>
+<% end %>

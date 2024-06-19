@@ -1,0 +1,38 @@
+.card-close {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  .book-info {
+    margin-top: 0;
+    min-height: 0;
+  }
+
+  .book-title {
+    font-size: 1.3em;
+    line-height: 1em;
+    font-weight: 800;
+    margin: 0;
+    color: $black;
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+.book-img-close {
+  font-size: 2em;
+  color: $blue;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.book-series-close {
+  font-size: 1.1em;
+  line-height: 0.8em;
+  margin: 5px 0;
+  color: $black;
+}

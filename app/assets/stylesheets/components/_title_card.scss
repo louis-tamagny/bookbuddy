@@ -1,0 +1,91 @@
+.title-card {
+  display: flex;
+  flex-direction: column;
+  background-color: $white;
+  // background-color: rgb(238, 255, 227);
+  // background-color: $greenwhite;
+  border-radius: 0 0 1em 1em;
+  box-shadow: 0 4px $green;
+  margin-bottom: 1em;
+  padding-top: 1em;
+  position: relative;
+
+  h2 {
+    font-family: 'Poppins';
+    color: #3A5C26;
+    font-size: 1.53em;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    word-spacing: 0.1em;
+    text-transform: none;
+    margin: 0.6em 1em 1em 3.4em;
+
+    .card-serie-title {
+      font-size: 1em;
+      font-family: 'Barlow Condensed';
+      line-height: 1em;
+      font-weight: 700;
+      color: $grey;
+      text-transform: uppercase;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
+
+  .book {
+    position: absolute;
+    top: 1.1em;
+    left: 1em;
+    height: 60px;
+  }
+
+  .header-icons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5em;
+    align-items: center;
+    width: calc(100vw - 3em);
+  }
+
+  .search-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.3em;
+
+    [type="search"] {
+      display: block;
+      width: 100%;
+      padding: 0.5em 1em;
+      font-size: 1.2em;
+      font-weight: normal;
+      line-height: 1.5;
+      color: #4b4b4b;
+      background-color: $white;
+      background-clip: padding-box;
+      border: 2px solid $lightgrey;
+      border-radius: 5em;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .search-button {
+      width: 60px;
+      height: 50px;
+
+      color: $lightgrey;
+      font-size: 1.4em;
+      font-weight: normal;
+      line-height: 1.5;
+      border-radius: 15px;
+      border: 2px solid $lightgrey;
+      background-color: $white;
+      box-shadow: inset 0 -4px $lightgrey;
+
+      padding: 0.2em 0.5em;
+      margin: 0;
+    }
+  }
+}

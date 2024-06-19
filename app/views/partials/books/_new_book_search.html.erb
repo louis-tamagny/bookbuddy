@@ -1,0 +1,47 @@
+<div id="search-barcode-reader" data-controller="bar-code-reader">
+  <form class="search-bar"
+        action=""
+        data-action="submit->bar-code-reader#fetchDbBooks">
+    <input  type="search"
+            data-bar-code-reader-target="search"
+            placeholder="Rechercher par titre..." />
+    <button type="submit"
+            class="search-button"
+            aria-label="Search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+    <a  class="btn btn-codebar"
+        data-action="click->bar-code-reader#start"
+        data-bar-code-reader-target="start">
+
+        <i class="fa-solid fa-barcode"></i></a>
+
+    <a  class="btn btn-codebar d-none"
+        data-action="click->bar-code-reader#reset"
+        data-bar-code-reader-target="reset">
+
+        <i class="fa-solid fa-xmark"></i></a>
+  </form>
+
+
+  <div class="barcode-video-wrapper d-none" data-bar-code-reader-target="videoWrapper">
+    <video id="barcode-video"></video>
+  </div>
+
+
+  <div id="tempbook-container" class="d-none" data-bar-code-reader-target="tempBook"></div>
+
+  <div  class="alert alert-warning alert-dismissible fade show d-none"
+        role="alert"
+        data-bar-code-reader-target="alert">
+    <button type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"></button>
+  </div>
+
+  <div id="sourceSelectPanel" data-bar-code-reader-target="sourceSelectPanel" style="display:none;">
+    <label for="sourceSelect">Change video source:</label>
+    <select id="sourceSelect" data-bar-code-reader-target="sourceSelect"></select>
+  </div>
+</div>

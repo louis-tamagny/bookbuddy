@@ -1,0 +1,23 @@
+<div class="card-close book-card" data-book-content-target="bookDefault"  style="<%= 'background-color: #ededed;' if collection.nil? %>">
+  <div class="book-img-close"><i class="fa-solid fa-book <%= book.book_type.downcase %>-icon"></i></div>
+  <div class="book-info">
+    <p class="book-title"><%= book.title %></p>
+    <% if book.serie %>
+      <p class="book-series-close">n°<%= book.serie_number %> - <%= book.serie.name %></p>
+    <% end %>
+  </div>
+  <div class="book-actions-close">
+    <% if collection && collection.id %>
+      <%= render 'partials/collections/favorite_button', collection: collection %>
+    <% else %>
+        <button
+          value="<%= book_collections_path(book) %>"
+          type="submit"
+          class="btn btn-add-collection"
+          data-book-content-accept-param="plain"
+          data-action="click->book-content#stop_bubbling click->book-content#addCollection click->serie#refresh">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+    <% end %>
+  </div>
+</div>

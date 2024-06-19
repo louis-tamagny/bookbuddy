@@ -1,0 +1,46 @@
+/* Styles pour la navbar */
+.nav {
+  position: fixed;
+  bottom: 0.8em;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: $white;
+  width: 90%;
+  max-width: 500px;
+  padding: 0.8em;
+  border: 2px solid $lightgrey;
+  border-radius: 3em;
+  box-shadow: inset 0 -3px 0px $lightgrey;
+  z-index: 98;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1em;
+  justify-content: space-around;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: auto;
+}
+
+.nav-item {
+  flex: 1;
+  text-align: center;
+}
+
+.nav-item a {
+  color: $grey;
+  text-decoration: none;
+  font-size: 1.2em;
+  display: block;
+}
+
+.active {
+  color: $green;
+}
