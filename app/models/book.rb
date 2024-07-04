@@ -18,8 +18,8 @@ class Book < ApplicationRecord
   # Search scopes
   scope :with_user_id, lambda{ |user_id| joins(:users).where(users: {id: user_id}) }
   scope :filtered_by_genre, lambda{ |genres| joins(:genres).where(genres: {name: genres}) }
-  scope :favorite_books, -> { where(collections: { is_favorited: true})}
-  scope :read_books, -> { where(collections: {is_read: 'true'}) }
+  scope :favorite_books, lambda{where(collections: { is_favorited: true})}
+  scope :read_books, lambda{ where(collections: {is_read: 'true'}) }
 
   # PGSearch Methods
   include PgSearch::Model

@@ -22,13 +22,12 @@ class BooksController < ApplicationController
       @books = Book.global_search(params[:query])
     end
 
-    unless (params[:my].present? && params[:my] == 'false')
+    unless (params[:owned].present? && params[:owned] == 'false')
       @books = @books.with_user_id(current_user.id)
     end
 
     if (params[:favorite].present? && params[:favorite] == 'true')
       @books = @books.favorite_books
-      puts @books
     end
 
     if params[:genres].present? && params[:genres] != ""
