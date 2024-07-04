@@ -27,6 +27,7 @@ export default class extends Controller {
 
   toggleFavoriteSwitch() {
     this.favoriteTarget.parentElement.classList.toggle('d-none');
+    this.favoriteTarget.checked = false
   }
 
 
