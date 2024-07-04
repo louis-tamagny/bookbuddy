@@ -59,7 +59,7 @@
                         text-decoration-thickness: 0.4rem;
                         text-underline-offset: 0.1rem;">Livres Favoris</span></h2>
   <div class="last-books-cards">
-    <% current_user.books.favorite_books('true', current_user).each do |book| %>
+    <% @favorite_books.each do |book| %>
       <%= link_to book_path(book) do %>
         <%= render 'partials/books/book_card_portrait', book: book %>
       <% end %>
