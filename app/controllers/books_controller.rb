@@ -27,7 +27,8 @@ class BooksController < ApplicationController
     end
 
     if (params[:favorite].present? && params[:favorite] == 'true')
-      @books = @books.favorite_books(params[:favorite], current_user.id)
+      @books = @books.favorite_books
+      puts @books
     end
 
     if params[:genres].present? && params[:genres] != ""
@@ -37,6 +38,7 @@ class BooksController < ApplicationController
     @books = @books.includes(:serie, :cover_img_blob)
     @books = @books.order(created_at: :desc)
     @genres = Genre.all
+
     respond_to do |format|
       format.html
       format.text { render partial: "partials/index_list", locals: {books: @books}, formats: [:html] }
