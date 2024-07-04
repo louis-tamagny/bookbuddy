@@ -4,9 +4,7 @@
     <%= image_tag "BookBuddy.svg", alt: "BookBuddy", class:"text" %>
   </div>
   <div class="header-user">
-    <%= link_to user_path(current_user) do %>
-      <i class="fa-solid fa-user"></i>
-    <% end %>
+      <%= button_to "Logout", destroy_user_session_path, method: :delete, class:"btn btn-outline-danger"  %>
   </div>
 </div>
 
