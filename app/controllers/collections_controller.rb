@@ -11,7 +11,10 @@ class CollectionsController < ApplicationController
     @book = Book.find(params[:book_id])
     @collection = Collection.create(book: @book, user: current_user)
     respond_to do |format|
-      format.html { redirect_to book_path(@book)}
+      format.html {
+        flash.notice = "#{@book.title} has been created !"
+        redirect_to book_path(@book)
+      }
       format.text { render partial: 'partials/books/book_card', locals: {book: @book, collection: @collection}, formats: [:html] }
     end
   end
@@ -39,9 +42,7 @@ class CollectionsController < ApplicationController
     @collection.is_read = !@collection.is_read
     if @collection.save
       respond_to do |format|
-        format.html do
-          render json: {message: 'The favorite status has been updated'}, status: :accepted
-        end
+        format.html { render json: {message: 'The favorite status has been updated'}, status: :accepted }
         format.text { render partial: 'partials/collections/read_button', locals: { collection: @collection }, formats: [:html] }
       end
     else
