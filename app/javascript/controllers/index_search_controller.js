@@ -25,6 +25,11 @@ export default class extends Controller {
     }
   }
 
+  toggleFavoriteSwitch() {
+    this.favoriteTarget.parentElement.classList.toggle('d-none');
+  }
+
+
   search() {
     const url = `/books?query=${this.inputTarget.value}&my=${
       this.myTarget.checked
