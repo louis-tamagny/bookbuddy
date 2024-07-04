@@ -6,6 +6,8 @@ import "@zxing/library";
 export default class extends Controller {
   static targets = ['sourceSelect', 'sourceSelectPanel', "start", "reset", "videoWrapper", "tempBook", 'alert', 'search']
 
+
+  // Initialize ZXing Reader and check for available cameras
   connect() {
     this.codeReader = new ZXing.BrowserMultiFormatReader();
     this.codeReader
@@ -33,6 +35,10 @@ export default class extends Controller {
         console.error(err);
       });
   }
+
+  // Start camera and ZXing Reader
+  // If there is a match, call reset to stop the camera
+  // If there is a match and a ISBN is found, call #getBookDetails
   start(){
     if (this.codeReader) {
       this.videoWrapperTarget.classList.remove("d-none");
@@ -55,6 +61,7 @@ export default class extends Controller {
     }
   }
 
+  // Stop ZXing Reader
   reset(){
     if (this.codeReader) {
       this.codeReader.reset();
@@ -63,6 +70,10 @@ export default class extends Controller {
       this.videoWrapperTarget.classList.add("d-none");
     }
   }
+
+  // Check OpenLibrary DB for a correspondance with the ISBN
+  // If there is a match, check if author is present, if not fetch the author with a new request
+  // If there is a match, call #getBookCard 
 
   #getBookDetails(isbn){
     const url = `https://openlibrary.org/isbn/${isbn}.json`;
