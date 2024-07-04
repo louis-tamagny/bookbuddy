@@ -92,15 +92,12 @@ class BooksController < ApplicationController
   end
 
   def create
-    # je vérifie si le livre existe déjà avec son titre
     @book = Book.find_by(title: book_params[:title])
 
-    # si le livre n'existe pas, je tente de créer un nouveau livre
     unless @book
       @book = Book.new(book_params)
       @book.release = Date.new(book_params[:release].to_i)
 
-      # je tente de créer la série voulue par l'auteur
       if serie_params[:name] != ''
         @serie = Serie.create_or_find_by!(serie_params)
         @book.serie = @serie
@@ -109,9 +106,8 @@ class BooksController < ApplicationController
       @book.save
     end
 
-    # je crée une nouvelle collection entre l'utilisateur et le book qui vient d'être créer
+
     if @book.id
-      # je crée les associations livre - genre
       params[:book][:genre_ids][1..].each do |genre_id|
         genre = Genre.find(genre_id)
         @book.genres << genre unless @book.genres.include?(genre)
@@ -124,6 +120,10 @@ class BooksController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def bnfsearch
+
   end
 
   private

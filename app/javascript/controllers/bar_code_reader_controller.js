@@ -172,7 +172,6 @@ export default class extends Controller {
       if (doc.publisher) bookData.edition = doc.publisher[0]
       if (doc.isbn) bookData.isbn = doc.isbn[1] || doc.isbn[0]
     }
-
     return bookData
   }
 }
