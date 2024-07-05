@@ -32,10 +32,7 @@ export default class extends Controller {
 
 
   search() {
-    const url = `/books?query=${this.inputTarget.value}
-      &owned=${this.ownedTarget.checked}
-      &genres=${this.genres.join('+')}
-      &favorite=${this.favoriteTarget.checked}`;
+    const url = `/books?query=${this.inputTarget.value}&owned=${this.ownedTarget.checked}&genres=${this.genres.join('+')}&favorite=${this.favoriteTarget.checked}`;
     fetch(url, { headers: { Accept: 'text/plain' } })
       .then((response) => response.text())
       .then((data) => {
