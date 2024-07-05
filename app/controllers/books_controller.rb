@@ -16,10 +16,10 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
+    @books = Book.all.limit(30)
 
     if params[:query].present?
-      @books = Book.global_search(params[:query])
+      @books = Book.global_search(params[:query]).limit(30)
     end
 
     unless (params[:owned].present? && params[:owned] == 'false')
@@ -34,7 +34,7 @@ class BooksController < ApplicationController
       @books = @books.filtered_by_genre(params[:genres].split(' '))
     end
 
-    @books = @books.includes(:serie, :cover_img_blob)
+    @books = @books.includes(:genres, :serie, :cover_img_blob)
     @books = @books.order(created_at: :desc)
     @genres = Genre.all
 
@@ -62,6 +62,7 @@ class BooksController < ApplicationController
           cover_url: params[:cover_url]
         )
         @book.serie = Serie.create_or_find_by!(name: params[:serieNames][0]) if params[:serieNames].present?
+
         if params[:genres].present?
           genre = Genre.find_or_create_by!(name: params[:genres])
           @book.genres << genre unless @book.genres.include?(genre)

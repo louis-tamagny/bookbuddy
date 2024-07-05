@@ -73,7 +73,7 @@ export default class extends Controller {
 
   // Check OpenLibrary DB for a correspondance with the ISBN
   // If there is a match, check if author is present, if not fetch the author with a new request
-  // If there is a match, call #getBookCard 
+  // If there is a match, get desired fields and call #getBookCard with the data
 
   #getBookDetails(isbn){
     const url = `https://openlibrary.org/isbn/${isbn}.json`;
@@ -97,10 +97,8 @@ export default class extends Controller {
           this.#getBookCard(bookData);
         }
 
-
       })
       .catch(error => {
-        console.error(error.message)
         window.alert(`Erreur: ISBN N°${isbn} n'a pas été trouvé`)
         this.reset()
     })
@@ -121,6 +119,9 @@ export default class extends Controller {
     return bookData
   }
 
+  // Send a request to "/books/new" with required data
+  // Get an HTML response (a list of book cards) and insert it in the DOM
+
   #getBookCard(bookData) {
     const urlParams = new URLSearchParams(bookData)
     const url = `/books/new?${urlParams}`
@@ -136,6 +137,10 @@ export default class extends Controller {
 
   }
 
+
+  // Methods for API fetching with query instead of ISBN
+  // Checking first own DB  at "/books" then open API
+
   fetchDbBooks(event) {
     event.preventDefault()
     const url = `/books?query=${this.searchTarget.value}&my=false`
@@ -148,7 +153,6 @@ export default class extends Controller {
           this.tempBookTarget.classList.remove("d-none");
           this.tempBookTarget.innerHTML = data;
         }
-
       });
   }
 
