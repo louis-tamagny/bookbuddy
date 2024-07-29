@@ -48,7 +48,7 @@ export default class extends Controller {
         (result, err) => {
           if (result) {
             this.reset()
-            this.#getBookDetails(result.text)
+            this.createBookFromISBN(result.text)
           }
           if (err && !(err instanceof ZXing.NotFoundException)) {
             console.error(err);
@@ -69,6 +69,13 @@ export default class extends Controller {
       this.resetTarget.classList.add("d-none");
       this.videoWrapperTarget.classList.add("d-none");
     }
+  }
+
+  // Post to create a book resources from ISBN
+
+  createBookFromISBN(isbn){
+    let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    fetch(`/books?book[isbn]=${isbn}`, { method: "POST", headers: { "X-CSRF-Token": csrfToken } })
   }
 
   // Check OpenLibrary DB for a correspondance with the ISBN

@@ -90,35 +90,15 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.find_by(title: book_params[:title])
+    @book = Book.from_BNF(book_params[:isbn])
 
-    unless @book
-      @book = Book.new(book_params)
-      @book.release = Date.new(book_params[:release].to_i)
-
-      if serie_params[:name] != ''
-        @serie = Serie.create_or_find_by!(serie_params)
-        @book.serie = @serie
-      end
-
-      @book.save
-    end
-
-    if @book.id
-      params[:book][:genre_ids][1..].each do |genre_id|
-        genre = Genre.find(genre_id)
-        @book.genres << genre unless @book.genres.include?(genre)
-      end
-
-      @collection = Collection.new(user: current_user, book: @book)
-      if @collection.save
-        redirect_to new_book_path
-      end
+    if @book.save
+      render :new, :ok, notice: "The book has been created"
     else
-      render :new, status: :unprocessable_entity
+      render :new, :unprocessable_entity, notice: "The book has not been created"
     end
   end
-  
+
   private
 
   def set_book
