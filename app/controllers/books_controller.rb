@@ -90,12 +90,16 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.from_BNF(book_params[:isbn])
+    @book = Book.from_ISBN(book_params[:isbn])
+    Collection.create(user: current_user, book: @book)
 
-    if @book.save
-      render :new, :ok, notice: "The book has been created"
+    if @book
+      flash.now.notice = "The book #{@book.title} has been added"
+      render :new, status: :ok
     else
-      render :new, :unprocessable_entity, notice: "The book has not been created"
+      @book = Book.new
+      flash.now.alert = "The book has not been added"
+      render :new, status: :unprocessable_entity
     end
   end
 
