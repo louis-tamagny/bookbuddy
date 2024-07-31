@@ -31,6 +31,20 @@ class Book < ApplicationRecord
     associated_against: {serie: :name},
     using: {trigram: {}, tsearch: {prefix: true}}
 
+  def self.from_ISBN(isbn)
+    book = Book.find_by(isbn: isbn)
+
+    unless book
+      book = Book.from_BNF(isbn)
+    end
+
+    unless book
+      book = Book.from_OL(isbn)
+    end
+
+    return book
+  end
+
   def self.from_BNF(isbn)
     base_url = "http://catalogue.bnf.fr/api/SRU?version=1.2&operation=searchRetrieve&query=bib.isbn any \"#{isbn}\""
 
@@ -57,6 +71,42 @@ class Book < ApplicationRecord
         # serie_name: doc.xpath("//mxc:datafield[@tag='225']/mxc:subfield[@code='a']", nmsp).text,
         # serie_number: doc.xpath("//mxc:datafield[@tag='225']/mxc:subfield[@code='v']", nmsp).text,
       end
+
+      new_book.save!
+
+      return new_book
+    rescue
+      return nil
+    end
+  end
+
+  def self.from_OL(isbn)
+    base_url = "https://openlibrary.org/isbn/#{isbn}.json"
+    file = URI.open(base_url).read
+    doc = JSON.parse(file)
+
+    begin
+      new_book = Book.new(title: doc["title"])
+
+      new_book.author = doc["by_statement"]
+      unless new_book.author
+        author_doc = JSON.parse(URI.open("https://openlibrary.org#{doc["authors"][0]["key"]}.json").read)
+        new_book.author = author_doc["name"]
+      end
+
+      if doc["series"]
+        serie = Serie.create_or_find_by(name: doc["series"][0].split(',')[0])
+        new_book.serie = serie
+      end
+
+      new_book.book_type = "Roman"
+      new_book.cover_url = doc["covers"] ? "https://covers.openlibrary.org/b/id/#{doc["covers"][0]}-M.jpg" : nil
+      new_book.description = doc["description"] if (doc["description"])
+      new_book.release = doc["publish_date"] if (doc["publish_date"])
+      new_book.edition = doc["publishers"][0] if (doc["publishers"])
+      new_book.isbn = isbn
+
+      new_book.save!
 
       return new_book
     rescue
