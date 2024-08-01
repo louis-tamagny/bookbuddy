@@ -76,6 +76,10 @@ export default class extends Controller {
   createBookFromISBN(isbn){
     let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     fetch(`/books?book[isbn]=${isbn}`, { method: "POST", headers: { "X-CSRF-Token": csrfToken } })
+      .then(res => res.text())
+      .then(html => {
+        document.body.insertAdjacentHTML('afterbegin', html)
+      })
   }
 
   // Check OpenLibrary DB for a correspondance with the ISBN

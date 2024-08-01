@@ -33,7 +33,7 @@ class Book < ApplicationRecord
 
   def self.from_ISBN(isbn)
     book = Book.find_by(isbn: isbn)
-
+    
     unless book
       book = Book.from_BNF(isbn)
     end
@@ -41,17 +41,16 @@ class Book < ApplicationRecord
     unless book
       book = Book.from_OL(isbn)
     end
-
     return book
   end
 
   def self.from_BNF(isbn)
     base_url = "http://catalogue.bnf.fr/api/SRU?version=1.2&operation=searchRetrieve&query=bib.isbn any \"#{isbn}\""
-
-    file = URI.open(base_url)
-    doc = Nokogiri::XML(file)
-    nmsp = doc.collect_namespaces
     begin
+      file = URI.open(base_url)
+      doc = Nokogiri::XML(file)
+      nmsp = doc.collect_namespaces
+
       new_book = Book.new({
         title: doc.xpath("//mxc:datafield[@tag='200']/mxc:subfield[@code='a']", nmsp).text,
         book_type: 'Roman',
@@ -82,12 +81,11 @@ class Book < ApplicationRecord
 
   def self.from_OL(isbn)
     base_url = "https://openlibrary.org/isbn/#{isbn}.json"
-    file = URI.open(base_url).read
-    doc = JSON.parse(file)
-
     begin
-      new_book = Book.new(title: doc["title"])
 
+      file = URI.open(base_url).read
+      doc = JSON.parse(file)
+      new_book = Book.new(title: doc["title"])
       new_book.author = doc["by_statement"]
       unless new_book.author
         author_doc = JSON.parse(URI.open("https://openlibrary.org#{doc["authors"][0]["key"]}.json").read)

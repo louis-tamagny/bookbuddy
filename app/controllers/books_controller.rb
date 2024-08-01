@@ -91,16 +91,20 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.from_ISBN(book_params[:isbn])
-    Collection.create(user: current_user, book: @book)
+    @collection = Collection.create(user: current_user, book: @book)
 
-    if @book
-      flash.now.notice = "The book #{@book.title} has been added"
-      render :new, status: :ok
+    if @book && @collection
+      notice = "Le livre #{@book.title} a été rajouté à ta bibliothèque"
+      render partial: "shared/flashes",
+        locals: {notice: notice},
+        formats: [:html]
     else
       @book = Book.new
-      flash.now.alert = "The book has not been added"
+      flash[:alert] = "Le livre #{@book.title} n'a pas été rajouté à ta bibliothèque"
       render :new, status: :unprocessable_entity
     end
+
+
   end
 
   private
