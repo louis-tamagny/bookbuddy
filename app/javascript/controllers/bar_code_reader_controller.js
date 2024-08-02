@@ -85,7 +85,6 @@ export default class extends Controller {
   // Check OpenLibrary DB for a correspondance with the ISBN
   // If there is a match, check if author is present, if not fetch the author with a new request
   // If there is a match, get desired fields and call #getBookCard with the data
-
   #getBookDetails(isbn){
     const url = `https://openlibrary.org/isbn/${isbn}.json`;
     fetch(url)
