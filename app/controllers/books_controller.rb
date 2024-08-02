@@ -90,33 +90,23 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.find_by(title: book_params[:title])
+    @book = Book.from_ISBN(book_params[:isbn])
+    @collection = Collection.create(user: current_user, book: @book)
 
-    unless @book
-      @book = Book.new(book_params)
-      @book.release = Date.new(book_params[:release].to_i)
-
-      if serie_params[:name] != ''
-        @serie = Serie.create_or_find_by!(serie_params)
-        @book.serie = @serie
-      end
-
-      @book.save
-    end
-
-    if @book.id
-      params[:book][:genre_ids][1..].each do |genre_id|
-        genre = Genre.find(genre_id)
-        @book.genres << genre unless @book.genres.include?(genre)
-      end
-
-      @collection = Collection.new(user: current_user, book: @book)
-      if @collection.save
-        redirect_to new_book_path
-      end
+    if @book && @collection.persisted?
+      notice = "Le livre #{@book.title} a été rajouté à ta bibliothèque"
+      render partial: "shared/flashes",
+        locals: {notice: notice},
+        formats: [:html]
     else
-      render :new, status: :unprocessable_entity
+      alert = "Le livre #{@book.title} n'a pas été rajouté à ta bibliothèque"
+      @book = Book.new
+      render partial: "shared/flashes",
+        locals: {alert: alert},
+        formats: [:html]
     end
+
+
   end
 
   private

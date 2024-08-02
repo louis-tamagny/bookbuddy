@@ -48,7 +48,7 @@ export default class extends Controller {
         (result, err) => {
           if (result) {
             this.reset()
-            this.#getBookDetails(result.text)
+            this.createBookFromISBN(result.text)
           }
           if (err && !(err instanceof ZXing.NotFoundException)) {
             console.error(err);
@@ -71,10 +71,20 @@ export default class extends Controller {
     }
   }
 
+  // Post to create a book resources from ISBN
+
+  createBookFromISBN(isbn){
+    let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    fetch(`/books?book[isbn]=${isbn}`, { method: "POST", headers: { "X-CSRF-Token": csrfToken } })
+      .then(res => res.text())
+      .then(html => {
+        document.body.insertAdjacentHTML('afterbegin', html)
+      })
+  }
+
   // Check OpenLibrary DB for a correspondance with the ISBN
   // If there is a match, check if author is present, if not fetch the author with a new request
   // If there is a match, get desired fields and call #getBookCard with the data
-
   #getBookDetails(isbn){
     const url = `https://openlibrary.org/isbn/${isbn}.json`;
     fetch(url)
@@ -187,7 +197,6 @@ export default class extends Controller {
       if (doc.publisher) bookData.edition = doc.publisher[0]
       if (doc.isbn) bookData.isbn = doc.isbn[1] || doc.isbn[0]
     }
-
     return bookData
   }
 }
